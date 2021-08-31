@@ -27,16 +27,49 @@ output_length = len(generated_list)
 #user input
 user_list = []
 keyboard.wait(first_character)
+#start timer
 start_time = time.time()
+#userinput
 user_input = input("")
+#stop timer
 end_time = time.time()
+#calculate total time
 total_time = end_time-start_time
+#add user input to a list
 user_list.append(user_input)
 
-#calculation
+
+#time elapsed
 print(">>> Time elapsed:", total_time, "seconds")
+#calculate and print wpm
 wpm = len(user_input)*60/(5*total_time)
 print(">>> Yout typing speed:", wpm, "wpm")
+
+#lists with no [] or ,
+generated_words_no_space = ""
+for word in generated_list:
+    generated_words_no_space += word + " "
+
+
+user_words_no_space =""
+for y in user_list:
+    user_words_no_space += y + " "
+
+#calculate accuracy
+generated_words_no_space=generated_words_no_space.split(" ")
+user_words_no_space=user_words_no_space.split(" ")
+acc = 0
+for letter in range(len(generated_words_no_space)):
+    if user_words_no_space[letter] == generated_words_no_space[letter]:
+        acc += 1
+    else:
+        pass
+   
+
+accuracy = acc*100/len(generated_words_no_space)
+print(">>> Your accuracy:", accuracy, "%")
+
+
 
 
 
