@@ -27,11 +27,16 @@ output_length = len(hovno)
 
 
 #user input
+user_list = []
 keyboard.wait(sracka)
 start_time = time.time()
 user_input = input("")
 end_time = time.time()
 print("time elapsed =", end_time - start_time, "seconds")
+user_list.append(user_input)
+print(user_list)
+
+
 
 
 
