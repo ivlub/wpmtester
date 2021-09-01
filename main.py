@@ -56,15 +56,16 @@ for y in user_list:
     user_words_no_space += y + " "
 
 #calculate accuracy
-generated_words_no_space=generated_words_no_space.split(" ")
-user_words_no_space=user_words_no_space.split(" ")
 acc = 0
-for letter in range(len(generated_words_no_space)):
-    if user_words_no_space[letter] == generated_words_no_space[letter]:
-        acc += 1
-    else:
+for i, c in enumerate(generated_words_no_space):
+    try:
+        if user_words_no_space[i] == c:
+            acc += 1
+    except:
         pass
-   
+
+accuracy = acc*100/len(generated_words_no_space)
+
 
 accuracy = acc*100/len(generated_words_no_space)
 print(">>> Your accuracy:", accuracy, "%")
