@@ -43,7 +43,7 @@ user_list.append(user_input)
 print(">>> Time elapsed:", total_time, "seconds")
 #calculate and print wpm
 wpm = len(user_input)*60/(5*total_time)
-print(">>> Yout typing speed:", wpm, "wpm")
+print(">>> Typing speed:", wpm, "wpm")
 
 #lists with no [] or ,
 generated_words_no_space = ""
@@ -68,7 +68,7 @@ accuracy = acc*100/len(generated_words_no_space)
 
 
 accuracy = acc*100/len(generated_words_no_space)
-print(">>> Your accuracy:", accuracy, "%")
+print(">>> Accuracy:", accuracy, "%")
 
 
 
