@@ -4,7 +4,8 @@ import random
 import keyboard
 import time
 import sys
-
+import os.path
+from os import path
 
 words_file = """a
 ability
@@ -1037,11 +1038,14 @@ total_time = end_time-start_time
 user_list.append(user_input)
 
 
-#time elapsed
-print(">>> Time elapsed:", total_time, "seconds")
+#time elapsed, rounded
+total_time_rounded = round(total_time, 2)
+print(">>> Time elapsed:", total_time_rounded, "seconds")
 #calculate and print wpm
 wpm = len(user_input)*60/(5*total_time)
-print(">>> Typing speed:", wpm, "wpm")
+#make wpm rounded
+roundedwpm = round(wpm)
+print(">>> Typing speed:", roundedwpm, "wpm")
 
 #lists with no [] or ,
 generated_words_no_space = ""
@@ -1063,10 +1067,53 @@ for i, c in enumerate(generated_words_no_space):
         pass
 
 accuracy = acc*100/len(generated_words_no_space)
+rounded_accuracy = round(accuracy, 2)
+print(">>> Accuracy:", rounded_accuracy, "%")
+
+#personal best system
 
 
-accuracy = acc*100/len(generated_words_no_space)
-print(">>> Accuracy:", accuracy, "%")
+#convert roundedwpm to int
+intwpm = int(roundedwpm)
+
+
+#personal best 
+#if log file exists>
+if os.path.exists("pb.txt"):
+    with open("pb.txt", "r", encoding="utf-8") as f:
+        content = f.read()
+        intcontent = int(content)
+        #if log file wpm is bigger than current wpm
+        if intcontent > intwpm:
+            f.close()
+            print("Your current personal best is", content, "wpm.")
+        #if log file wpm is smaller than current wpm - new personal best
+        else:
+            f.close()
+            with open("pb.txt", "w", encoding="utf-8") as d:
+                d.write(str(roundedwpm))
+                d.close()
+                #open the file and rewrite data
+                with open("pb.txt", "r", encoding="utf-8") as d:
+                    dcontent = d.read()
+                    print("Your current personal best is", dcontent, "wpm.")
+#if log file does not exist, create and write
+else:
+    with open("pb.txt", "w", encoding="utf-8") as g:
+        g.write(str(roundedwpm))
+        g.close()
+        with open("pb.txt", "r", encoding="utf-8") as g:
+            gcontent = g.read()
+            print("Your current personal best is", gcontent, "wpm.")
+
+
+
+
+
+
+
+
+
 
 
 
